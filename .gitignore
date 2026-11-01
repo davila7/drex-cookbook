@@ -2,8 +2,3 @@
 .venv/
 __pycache__/
 .ipynb_checkpoints/
-results/*
-!results/coverage_accuracy.png
-!results/eval.csv
-!results/tune.csv
-!results/tuning_distributions.png

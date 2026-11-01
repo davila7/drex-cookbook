@@ -1,22 +1,14 @@
 # Drex 2.0 cookbook
 
-A runnable Jupyter notebook that builds a support-triage agent on top of [Drex 2.0](https://github.com/nace-ai/drex-decision-models), Nace AI's decision model, using the hosted API. No GPU needed.
+A short, runnable Jupyter notebook showing how to use [Drex 2.0](https://github.com/nace-ai/drex-decision-models), Nace AI's decision model, as the decision step of an agent or workflow. It uses the hosted API, so no GPU is needed.
 
-Drex is not a chat model: you send a `state` and typed questions (`noul` yes/no, `choice`, `score`) and get a probability for every option back. The notebook uses those probabilities to decide when the agent acts on its own and when it hands a ticket to a person, then measures the result on a small labeled set.
+Drex is not a chat model: you send a `state` and typed questions (`noul` yes/no, `choice`, `score`) and get a probability for every option back. The notebook walks through:
 
-## What's inside
-
-| Section | What it shows |
-|---|---|
-| 1. First call | One `POST /v1/systemone` request and how to read the response |
-| 2. Question types | `choice`, `noul` and `score` in a single request |
-| 3. Batching | Token (cost) savings of one request vs. one per question |
-| 4. Confidence gate | Thresholds that turn probabilities into actions or human review |
-| 5. Evaluation | Accuracy by ticket type, coverage vs. accuracy, latency, cost |
-| 6. Calibration | Choose thresholds on a separate tuning set, re-score the held-out set |
-| 7. Failures | Every mistake with its probabilities, plus prompt-injection tickets |
-
-`data/tickets.jsonl` contains 40 synthetic support tickets written and labeled by hand: 25 clear-cut, 15 deliberately hard (multi-intent, sarcasm, Spanish, negation, vague, prompt injection). `data/tune.jsonl` is a second set of 40, used only to choose the confidence thresholds, so the evaluation set stays held out. Both are sanity checks for the workflow, not benchmarks.
+1. Setup
+2. First call
+3. The three question types in one request
+4. Turning probabilities into a decision (act, or hand off to a human)
+5. Running a small batch of support tickets
 
 ## Run it
 
@@ -29,8 +21,8 @@ cp .env.example .env   # paste your key from https://console.nace.ai
 jupyter lab drex_cookbook.ipynb
 ```
 
-A new Nace account includes $5 of balance. Drex 2.0 bills $0.06 per million input tokens (output tokens are free), so a full run of the notebook costs a fraction of a cent.
+A new Nace account includes $5 of balance. Drex 2.0 bills $0.06 per million input tokens (output tokens are free), so running the notebook costs a fraction of a cent.
 
 ## Disclosure
 
-This cookbook was produced as part of a sponsored collaboration with Nace AI. The code, dataset and conclusions are my own.
+This cookbook was produced as part of a sponsored collaboration with Nace AI. The code and opinions are my own.
