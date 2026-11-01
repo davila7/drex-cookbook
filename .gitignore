@@ -5,3 +5,5 @@ __pycache__/
 results/*
 !results/coverage_accuracy.png
 !results/eval.csv
+!results/tune.csv
+!results/tuning_distributions.png

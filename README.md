@@ -13,9 +13,10 @@ Drex is not a chat model: you send a `state` and typed questions (`noul` yes/no,
 | 3. Batching | Token (cost) savings of one request vs. one per question |
 | 4. Confidence gate | Thresholds that turn probabilities into actions or human review |
 | 5. Evaluation | Accuracy by ticket type, coverage vs. accuracy, latency, cost |
-| 6. Failures | Every mistake with its probabilities, plus prompt-injection tickets |
+| 6. Calibration | Choose thresholds on a separate tuning set, re-score the held-out set |
+| 7. Failures | Every mistake with its probabilities, plus prompt-injection tickets |
 
-`data/tickets.jsonl` contains 40 synthetic support tickets written and labeled by hand: 20 clear-cut, 20 deliberately hard (multi-intent, sarcasm, Spanish, negation, vague, prompt injection). It is a sanity check for the workflow, not a benchmark.
+`data/tickets.jsonl` contains 40 synthetic support tickets written and labeled by hand: 25 clear-cut, 15 deliberately hard (multi-intent, sarcasm, Spanish, negation, vague, prompt injection). `data/tune.jsonl` is a second set of 40, used only to choose the confidence thresholds, so the evaluation set stays held out. Both are sanity checks for the workflow, not benchmarks.
 
 ## Run it
 
